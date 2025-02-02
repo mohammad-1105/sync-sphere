@@ -1,15 +1,17 @@
-"use client";
+
 
 import * as React from "react";
-import { useAuthActions } from "@convex-dev/auth/react";
-import { Button } from "@/components/ui/button";
+
+import UserButton from "@/features/auth/components/user-button";
 
 export default function HomePage() {
-  const { signOut } = useAuthActions();
+
   return (
     <main className="size-full">
       HomePage
-      <Button  variant={"destructive"} onClick={() => signOut()}>Sign Out</Button>
+      <div className="p-12">
+        <UserButton />
+      </div>
     </main>
   );
 }
