@@ -1,9 +1,12 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Roboto_Mono as RobotoMono } from "next/font/google";
+import "./globals.css";
+
 import { ConvexClientProvider } from "@/components/providers/convex-client-provider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
-import "./globals.css";
+import { ModalsProviders } from "@/components/providers/modals-providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const robotoMono = RobotoMono({
   variable: "--font-roboto-mono",
@@ -47,9 +50,13 @@ export default function RootLayout({
     <ConvexAuthNextjsServerProvider>
       <html lang="en">
         <body
-          className={`${robotoMono.variable} ${robotoMono.className} antialiased`}
+          className={`${robotoMono.variable} ${robotoMono.className} dark antialiased`}
         >
-          <ConvexClientProvider>{children}</ConvexClientProvider>
+          <ConvexClientProvider>
+            <ModalsProviders />
+            {children}
+            <Toaster  position="top-center"/>
+          </ConvexClientProvider>
         </body>
       </html>
     </ConvexAuthNextjsServerProvider>

@@ -1,17 +1,14 @@
-
+"use client";
 
 import * as React from "react";
-
-import UserButton from "@/features/auth/components/user-button";
+import { useCheckWorkspaceCreation } from "@/features/workspaces/hooks/use-check-workspace-creation";
 
 export default function HomePage() {
-
+  useCheckWorkspaceCreation();
   return (
     <main className="size-full">
       HomePage
-      <div className="p-12">
-        <UserButton />
-      </div>
+      
     </main>
   );
 }

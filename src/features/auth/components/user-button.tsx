@@ -8,10 +8,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
+import { useCurrentUser } from "@/features/auth/api/use-current-user";
 import { Button } from "@/components/ui/button";
 
-export default function UserButton() {
+export function UserButton() {
   const [isPending, setIsPending] = React.useState<boolean>(false);
   const { signOut } = useAuthActions();
   const { data } = useCurrentUser();
@@ -34,7 +34,7 @@ export default function UserButton() {
         <Avatar className="size-10">
           <AvatarImage src={data?.image} />
           <AvatarFallback>
-            <User className="size-4/5 animate-pulse overflow-hidden" />
+            <User className="size-4/5 overflow-hidden" />
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
