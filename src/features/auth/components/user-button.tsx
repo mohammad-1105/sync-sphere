@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { User, LogOut, Loader } from "lucide-react";
 import {
@@ -12,6 +13,7 @@ import { useCurrentUser } from "@/features/auth/api/use-current-user";
 import { Button } from "@/components/ui/button";
 
 export function UserButton() {
+  const router = useRouter();
   const [isPending, setIsPending] = React.useState<boolean>(false);
   const { signOut } = useAuthActions();
   const { data } = useCurrentUser();
@@ -19,8 +21,12 @@ export function UserButton() {
   const handleSignOut = (): void => {
     setIsPending(true);
     signOut()
+      .then(() => router.push("/auth"))
       .catch((err) => console.error("Error in Signing out: ", err))
-      .finally(() => setIsPending(false));
+      .finally(() => {
+        setIsPending(false);
+        router.push("/auth");
+      });
   };
 
   if (data === null) return null;
