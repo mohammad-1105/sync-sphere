@@ -15,7 +15,7 @@ type Props = {
  */
 export const useGetWorkspace = ({ workspaceId }: Props) => {
   const data = useQuery(api.workspaces.getWorkspaceById, { workspaceId });
-  const isLoading = data === null || data === undefined;
+  const isLoading = data === undefined;
 
   return {
     isLoading,

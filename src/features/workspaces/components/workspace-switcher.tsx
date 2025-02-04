@@ -66,10 +66,8 @@ export function WorkspaceSwitcher() {
             {workspace.name + " Workspace"}
           </DropdownMenuItem>
         ))}
-        <DropdownMenuSeparator className="my-2" />
-
+        
         {/* Create new workspace */}
-
         <DropdownMenuItem asChild>
           <Button
             className="w-full cursor-pointer"

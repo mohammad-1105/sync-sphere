@@ -11,7 +11,7 @@ export default function HomePage() {
   const { isLoading, data } = useGetWorkspaces();
   const { open, setOpen } = useWorkspaceModalCreationStore();
   const router = useRouter();
-  const workspaceId: Id<"workspaces"> | undefined = data?.[0]?._id;
+  const workspaceId = data?.[0]?._id as Id<"workspaces">;
 
   React.useEffect(() => {
     if (!isLoading) {

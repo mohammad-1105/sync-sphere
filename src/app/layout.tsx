@@ -7,6 +7,7 @@ import { ConvexClientProvider } from "@/components/providers/convex-client-provi
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { ModalsProviders } from "@/components/providers/modals-providers";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 const robotoMono = RobotoMono({
   variable: "--font-roboto-mono",
@@ -48,14 +49,21 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexAuthNextjsServerProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
-          className={`${robotoMono.variable} ${robotoMono.className} dark antialiased`}
+          className={`${robotoMono.variable} ${robotoMono.className} antialiased selection:bg-foreground selection:text-primary-foreground`}
         >
           <ConvexClientProvider>
-            <ModalsProviders />
-            {children}
-            <Toaster  position="top-center"/>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <ModalsProviders />
+              {children}
+              <Toaster position="top-center" />
+            </ThemeProvider>
           </ConvexClientProvider>
         </body>
       </html>

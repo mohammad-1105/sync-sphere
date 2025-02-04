@@ -1,9 +1,12 @@
 "use client";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { Info, Search } from "lucide-react";
+import { Search } from "lucide-react";
+
 import { useGetWorkspaceId } from "@/features/workspaces/hooks/use-get-workspace-id";
 import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
+import { ModeToggle } from "@/components/mode-toggle";
+
 export function Toolbar() {
   const { workspaceId } = useGetWorkspaceId();
   const { isLoading, data } = useGetWorkspace({ workspaceId });
@@ -22,13 +25,7 @@ export function Toolbar() {
       </div>
 
       <div className="ml-auto flex flex-1 items-center justify-end">
-        <Button
-          className="h-7 bg-foreground/10 hover:bg-foreground/10 "
-          size={"sm"}
-          variant={"ghost"}
-        >
-          <Info className="size-5 " />
-        </Button>
+        <ModeToggle />
       </div>
     </nav>
   );
